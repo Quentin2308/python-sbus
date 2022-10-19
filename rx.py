@@ -71,7 +71,7 @@ class SBUSReceiver:
             #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
             #print (frame[0:42])
 #		
-            channel_bits = ba.bytearray(176) #holds the bits of the 16 11-bit channel values
+            channel_bits = bytearray(176) #holds the bits of the 16 11-bit channel values
             print(channel_bits)
             channel_bits.setall(0)
             channel_bits_ptr = 0
