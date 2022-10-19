@@ -73,7 +73,7 @@ class SBUSReceiver:
             #channel_sum >> 23
             #print (channel_sum)
             #print (channel_sum >> 11)
-            for ch in range(0, 18):
+            for ch in range(0, SBUS_NUM_CHANNELS):
                 self.sbusChannels[ch] = channel_sum & 0x7ff
                 channel_sum = channel_sum >> 11
 
