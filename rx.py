@@ -19,8 +19,8 @@ import bitarray as ba
 class SBUSReceiver:
     class SBUSFramer(asyncio.Protocol):
 
-        START_BYTE = 0x00
-        END_BYTE = 0xf8
+        START_BYTE = 0xf8
+        END_BYTE = 0x00
         SBUS_FRAME_LEN = 12
 	#\xf8.\x00
 
