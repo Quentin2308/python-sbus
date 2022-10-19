@@ -92,8 +92,7 @@ class SBUSReceiver:
             self.sbusChannels[13] = ((channel_sum[18]>>7|channel_sum[19]<<1|channel_sum[20]<<9)  & 0x07FF);
             self.sbusChannels[14] = ((channel_sum[20]>>2|channel_sum[21]<<6)                & 0x07FF);
             self.sbusChannels[15] = ((channel_sum[21]>>5|channel_sum[22]<<3)                & 0x07FF);
-            self.sbusChannels[16] = ((channel_sum[23])      & 0x0001) ? 2047 : 0;
-            self.sbusChannels[17] = ((channel_sum[23] >> 1) & 0x0001) ? 2047 : 0;
+
 
 
             # Failsafe
