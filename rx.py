@@ -76,9 +76,9 @@ class SBUSReceiver:
             channel_bits.setall(0)
             channel_bits_ptr = 0
             _UART_FRAME_LENGTH = 12
-            toto3 = frame[0:23]
+            toto3 = frame[0:42]
             toto4 = int.from_bytes(toto3, byteorder="little") 
-            toto5 = bin(toto4)
+            toto5 = bin(toto4)[2::]
             print (toto5)
             for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
                 #extract from UART frame and invert each byte
