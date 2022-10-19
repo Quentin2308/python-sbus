@@ -69,10 +69,10 @@ class SBUSReceiver:
             #self.sbusChannels[2] = ((channel_sum[3]>>6 | channel_sum[4]<<2 | channel_sum[5]<<10) & 0x07FF);
             #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
 	
-            channel_sum = int.from_bytes(frame[1:23], byteorder="little")		
+            channel_sum = int.from_bytes(frame[2:23], byteorder="little")		
             for ch in range(0, 16):
                 self.sbusChannels[ch] = channel_sum & 0x7ff
-                channel_sum = channel_sum >> 10
+                channel_sum = channel_sum >> 11
 
 
             # Failsafe
