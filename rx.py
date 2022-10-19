@@ -83,11 +83,12 @@ class SBUSReceiver:
             print (toto4)
             toto5 = bin(toto4)[2::]
             print (toto5)
-            toto6 = ba.bitarray(toto5)
             print (len(toto5))
+            toto6 = ba.bitarray(toto5)
+            print (toto6)
             for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
                 #extract from UART frame and invert each byte
-                channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~toto5[packet_bits_ptr+1:packet_bits_ptr+9]
+                channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~toto6[packet_bits_ptr+1:packet_bits_ptr+9]
                 channel_bits_ptr += 8
             ret_list = []
             for channel_ptr in range(0,16*11,11):
