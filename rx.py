@@ -10,7 +10,7 @@ Based on:
 """
 
 import asyncio
-from periphery import Serial
+#from periphery import Serial
 import serial
 import serial_asyncio
 
