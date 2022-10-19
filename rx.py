@@ -113,9 +113,9 @@ class SBUSReceiver:
         def __repr__(self):
             #return ",".join(str(ch) for ch in self.sbusChannels)
             str=""
-            for ch,i in self.sbusChannels:
-		if i != 1 or i != 2:
-			str += str(ch)
+            for i,ch in enumerate(self.sbusChannels):
+            	if i != 1 or i != 2:
+            		str += str(ch)
             return str
             
     def __init__(self):
