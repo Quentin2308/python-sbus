@@ -28,7 +28,7 @@ class SBUSReceiver:
     class SBUSFramer(asyncio.Protocol):
 
         START_BYTE = 0xf8
-        END_BYTE = 0x00
+        #END_BYTE = 0x00
         SBUS_FRAME_LEN = 35
 	#\xf8.\x00
 
@@ -101,7 +101,7 @@ class SBUSReceiver:
                 channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~toto6[packet_bits_ptr+1:packet_bits_ptr+9]
                 #print (channel_bits[channel_bits_ptr:channel_bits_ptr+8])
                 #print (channel_bits)
-                channel_bits_ptr += 9
+                channel_bits_ptr = 8
             ret_list = []
             print (channel_bits)
             print (len(channel_bits))
