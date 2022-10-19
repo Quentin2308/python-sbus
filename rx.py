@@ -70,7 +70,7 @@ class SBUSReceiver:
             #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
             #print (frame[0:42])	
             channel_sum = int.from_bytes(frame[1:23], byteorder="little")
-            print channel_sum
+            print (channel_sum)
             for ch in range(0, 16):
                 self.sbusChannels[ch] = channel_sum & 0x7ff
                 channel_sum = channel_sum >> 11
