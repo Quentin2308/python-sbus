@@ -115,7 +115,7 @@ class SBUSReceiver:
             toto=""
             for i,ch in enumerate(self.sbusChannels):
             	if i != 1 or i != 2:
-            		toto += str(ch)
+            		toto += str(ch + "	")
             return toto
             
     def __init__(self):
