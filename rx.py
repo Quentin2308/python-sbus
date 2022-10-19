@@ -77,7 +77,8 @@ class SBUSReceiver:
             channel_bits_ptr = 0
             _UART_FRAME_LENGTH = 12
             toto3 = frame[0:42]
-            toto4 = int.from_bytes(toto3, byteorder="little") 
+            print (toto3)
+            toto4 = int.from_bytes(toto3, byteorder="big") 
             toto5 = bin(toto4)[2::]
             print (toto5)
             print (len(toto5))
@@ -91,8 +92,8 @@ class SBUSReceiver:
                 ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],byteorder='little')))
             return ret_list
 #
-            toto2 = frame[0:23] 
-            channel_sum = int.from_bytes(toto2, byteorder="little")
+            #toto2 = frame[0:23] 
+            #channel_sum = int.from_bytes(toto2, byteorder="little")
             #channel_sum >> 8
             #print (channel_sum)
             #print (channel_sum >> 11)
