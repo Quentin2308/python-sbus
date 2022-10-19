@@ -134,7 +134,7 @@ async def main():
     while True:
         frame = await sbus.get_frame()
         #print(frame)
-        print SBUSReceiver
+        print sbus
 
 
 if __name__ == '__main__':
