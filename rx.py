@@ -20,7 +20,7 @@ class SBUSReceiver:
 
         START_BYTE = 0x0f
         END_BYTE = 0x00
-        SBUS_FRAME_LEN = 23
+        SBUS_FRAME_LEN = 25
 
         def __init__(self):
             super().__init__()
@@ -60,7 +60,7 @@ class SBUSReceiver:
         def __init__(self, frame):
             self.sbusChannels = [None] * SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS
 
-            channel_sum = int.from_bytes(frame[1:21], byteorder="little")
+            channel_sum = int.from_bytes(frame[1:23], byteorder="little")
 
             for ch in range(0, 16):
                 self.sbusChannels[ch] = channel_sum & 0x7ff
