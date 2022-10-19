@@ -14,8 +14,15 @@ import asyncio
 import serial
 import serial_asyncio
 
+
 import bitarray as ba
 import bitarray.util as bau
+#used to check packets for validity
+_UART_FRAME_CONFORMANCE_BITMASK = ba.bitarray('100000000011')
+#used to check failsafe status
+_FAILSAFE_STATUS_BITMASK = ba.bitarray('000000001100')
+_PACKET_LENGTH = 298
+_UART_FRAME_LENGTH = 12 
 
 class SBUSReceiver:
     class SBUSFramer(asyncio.Protocol):
@@ -77,7 +84,6 @@ class SBUSReceiver:
             channel_bits.setall(0)
             #print(channel_bits)
             channel_bits_ptr = 0
-            _UART_FRAME_LENGTH = 12
             toto3 = frame[0:42]
             #print (toto3)
             toto4 = int.from_bytes(toto3, byteorder="big") 
