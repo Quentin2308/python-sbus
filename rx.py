@@ -28,9 +28,9 @@ class SBUSReceiver:
     class SBUSFramer(asyncio.Protocol):
 
         START_BYTE = 0xf0
-        #END_BYTE = 0x00
-        #SBUS_FRAME_LEN = 35
-        SBUS_FRAME_LEN = 22
+        END_BYTE = 0x00
+        SBUS_FRAME_LEN = 35
+        #SBUS_FRAME_LEN = 22
 	#\xf8.\x00
 
         def __init__(self):
@@ -93,8 +93,8 @@ class SBUSReceiver:
             #print (toto5)
             #print (len(toto5))
             toto6 = ba.bitarray(toto5)
-            print (toto6)
-            print (len(toto6))
+            #print (toto6)
+            #print (len(toto6))
 		
             for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
                 #extract from UART frame and invert each byte
@@ -104,8 +104,8 @@ class SBUSReceiver:
                 #print (channel_bits)
                 channel_bits_ptr = 8
             ret_list = []
-            print (channel_bits)
-            print (len(channel_bits))
+            #print (channel_bits)
+            #print (len(channel_bits))
 
             for channel_ptr in range(0,16*11,11):
                 #iterate through 11-bit numbers, converting them to ints. Note little endian.
