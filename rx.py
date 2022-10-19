@@ -102,7 +102,7 @@ class SBUSReceiver:
                 channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~toto6[packet_bits_ptr+1:packet_bits_ptr+9]
                 #print (channel_bits[channel_bits_ptr:channel_bits_ptr+8])
                 #print (channel_bits)
-                channel_bits_ptr = 8
+                channel_bits_ptr += 8
             ret_list = []
             #print (channel_bits)
             #print (len(channel_bits))
