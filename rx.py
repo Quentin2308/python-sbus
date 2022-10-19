@@ -114,7 +114,7 @@ class SBUSReceiver:
             #return ",".join(str(ch) for ch in self.sbusChannels)
             toto=""
             for i,ch in enumerate(self.sbusChannels):
-            	if i != 1 and i != 2:
+            	if i != 1 and i != 2 and i != 3:
             		toto += str(ch) + "	"
             return toto
             
