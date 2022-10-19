@@ -86,9 +86,9 @@ class SBUSReceiver:
             #print(channel_bits)
             channel_bits_ptr = 0
             toto3 = frame[0:42]
-            #print (toto3)
+            print (toto3)
             toto4 = int.from_bytes(toto3, byteorder="big") 
-            #print (toto4)
+            print (toto4)
             toto5 = bin(toto4)[2::]
             #print (toto5)
             #print (len(toto5))
