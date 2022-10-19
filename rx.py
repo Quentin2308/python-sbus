@@ -93,7 +93,7 @@ class SBUSReceiver:
                 #extract from UART frame and invert each byte
                 print (toto6[packet_bits_ptr+1:packet_bits_ptr+9])
                 channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~toto6[packet_bits_ptr+1:packet_bits_ptr+9]
-		print (channel_bits[channel_bits_ptr:channel_bits_ptr+8])
+                print (channel_bits[channel_bits_ptr:channel_bits_ptr+8])
                 print (channel_bits)
                 channel_bits_ptr += 8
             ret_list = []
