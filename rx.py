@@ -86,14 +86,14 @@ class SBUSReceiver:
             #print(channel_bits)
             channel_bits_ptr = 0
             toto3 = frame[0:42]
-            print (toto3)
+            #print (toto3)
             toto4 = int.from_bytes(toto3, byteorder="big") 
-            print (toto4)
+            #print (toto4)
             toto5 = bin(toto4)[2::]
             #print (toto5)
             #print (len(toto5))
             toto6 = ba.bitarray(toto5)
-            print (toto6)
+            #print (toto6)
             #print (len(toto6))
 		
             for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
@@ -104,7 +104,7 @@ class SBUSReceiver:
                 #print (channel_bits)
                 channel_bits_ptr += 8
             ret_list = []
-            print (channel_bits)
+            #print (channel_bits)
             #print (len(channel_bits))
 
             for channel_ptr in range(0,16*11,11):
