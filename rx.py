@@ -134,7 +134,7 @@ class SBUSReceiver:
 
 
 async def main():
-    sbus = await SBUSReceiver.create("/dev/ttyUSB2")
+    sbus = await SBUSReceiver.create("/dev/ttyS1")
     while True:
         frame = await sbus.get_frame()
         print(frame)
