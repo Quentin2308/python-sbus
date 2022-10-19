@@ -52,7 +52,7 @@ class SBUSReceiver:
 
     class SBUSFrame:
         OUT_OF_SYNC_THD = 10
-        SBUS_NUM_CHANNELS = 18
+        SBUS_NUM_CHANNELS = 16
         SBUS_SIGNAL_OK = 0
         SBUS_SIGNAL_LOST = 1
         SBUS_SIGNAL_FAILSAFE = 2
@@ -64,18 +64,8 @@ class SBUSReceiver:
 
             for ch in range(0, 16):
                 self.sbusChannels[ch] = channel_sum & 0x7ff
-                channel_sum = channel_sum >> 11
+                channel_sum = channel_sum >> 12
 
-            # to be tested, No 17 & 18 channel on taranis X8R
-            if (frame[23]) & 0x0001:
-                self.sbusChannels[16] = 2047
-            else:
-                self.sbusChannels[16] = 0
-            # to be tested, No 17 & 18 channel on taranis X8R
-            if ((frame[23]) >> 1) & 0x0001:
-                self.sbusChannels[17] = 2047
-            else:
-                self.sbusChannels[17] = 0
 
             # Failsafe
             self.failSafeStatus = SBUSReceiver.SBUSFrame.SBUS_SIGNAL_OK
