@@ -71,16 +71,17 @@ class SBUSReceiver:
             #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
             #print (frame[0:42])
 #		
-            channel_bits = bytearray(176) #holds the bits of the 16 11-bit channel values
+            channel_bits = ba.bitarray(176) #holds the bits of the 16 11-bit channel values
             print(channel_bits)
             channel_bits.setall(0)
             channel_bits_ptr = 0
             _UART_FRAME_LENGTH = 12
-            toto3 = bien(frame[0:42])
+            toto3 = bin(frame[0:42])
             print (toto3)
             toto4 = int.from_bytes(toto3, byteorder="big") 
             toto5 = bin(toto4)[2::]
             print (toto5)
+            toto6 = ba.bitarray(toto6)
             print (len(toto5))
             for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
                 #extract from UART frame and invert each byte
