@@ -77,12 +77,12 @@ class SBUSReceiver:
             _UART_FRAME_LENGTH = 12
             for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
                 #extract from UART frame and invert each byte
-                channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~frame[packet_bits_ptr+1:packet_bits_ptr+9]
+                channel_bits[channel_bits_ptr:channel_bits_ptr+8]~=frame[packet_bits_ptr+1:packet_bits_ptr+9]
                 channel_bits_ptr += 8
             ret_list = []
             for channel_ptr in range(0,16*11,11):
                 #iterate through 11-bit numbers, converting them to ints. Note little endian.
-                ret_list = ret_list + (bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],byteorder='little')))
+                ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],byteorder='little')))
             return ret_list
 #
             toto2 = frame[0:23] 
