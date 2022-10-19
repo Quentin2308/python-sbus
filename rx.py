@@ -92,9 +92,10 @@ class SBUSReceiver:
                 channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~toto6[packet_bits_ptr+1:packet_bits_ptr+9]
                 channel_bits_ptr += 8
             ret_list = []
+            print (channel_bits)
             for channel_ptr in range(0,16*11,11):
                 #iterate through 11-bit numbers, converting them to ints. Note little endian.
-                ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],byteorder='little')))
+                ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],endian='little')))
             return ret_list
 #
             #toto2 = frame[0:23] 
