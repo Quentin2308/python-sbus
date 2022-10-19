@@ -67,15 +67,15 @@ class SBUSReceiver:
                 channel_sum = channel_sum >> 11
 
             # to be tested, No 17 & 18 channel on taranis X8R
-            #if (frame[23]) & 0x0001:
-                #self.sbusChannels[16] = 2047
-            #else:
-                #self.sbusChannels[16] = 0
+            if (frame[23]) & 0x0001:
+                self.sbusChannels[16] = 2047
+            else:
+                self.sbusChannels[16] = 0
             # to be tested, No 17 & 18 channel on taranis X8R
-            #if ((frame[23]) >> 1) & 0x0001:
-                #self.sbusChannels[17] = 2047
-            #else:
-                #self.sbusChannels[17] = 0
+            if ((frame[23]) >> 1) & 0x0001:
+                self.sbusChannels[17] = 2047
+            else:
+                self.sbusChannels[17] = 0
 
             # Failsafe
             self.failSafeStatus = SBUSReceiver.SBUSFrame.SBUS_SIGNAL_OK
@@ -124,7 +124,7 @@ class SBUSReceiver:
             SBUSReceiver.SBUSFramer,
             port,
             baudrate=100000,
-            parity=serial.PARITY_ODD,
+            parity=serial.PARITY_EVEN,
             stopbits=serial.STOPBITS_TWO,
             bytesize=serial.EIGHTBITS)
         return receiver
