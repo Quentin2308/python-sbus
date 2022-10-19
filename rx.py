@@ -20,7 +20,7 @@ class SBUSReceiver:
 
         START_BYTE = 0xf8
         END_BYTE = 0x00
-        SBUS_FRAME_LEN = 25
+        SBUS_FRAME_LEN = 18
 	#\xf8.\x00
 
         def __init__(self):
@@ -54,7 +54,7 @@ class SBUSReceiver:
 
     class SBUSFrame:
         OUT_OF_SYNC_THD = 10
-        SBUS_NUM_CHANNELS = 19
+        SBUS_NUM_CHANNELS = 18
         SBUS_SIGNAL_OK = 0
         SBUS_SIGNAL_LOST = 1
         SBUS_SIGNAL_FAILSAFE = 2
@@ -73,7 +73,7 @@ class SBUSReceiver:
             #channel_sum >> 23
             #print (channel_sum)
             #print (channel_sum >> 11)
-            for ch in range(0, 19):
+            for ch in range(0, 18):
                 self.sbusChannels[ch] = channel_sum & 0x7ff
                 channel_sum = channel_sum >> 11
 
