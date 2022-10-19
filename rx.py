@@ -18,7 +18,7 @@ import serial_asyncio
 class SBUSReceiver:
     class SBUSFramer(asyncio.Protocol):
 
-        START_BYTE = 0xf8
+        START_BYTE = 0x00
         END_BYTE = 0x00
         SBUS_FRAME_LEN = 25
 	#\xf8.\x00
@@ -70,8 +70,7 @@ class SBUSReceiver:
             #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
 	
             #print (frame[0:42])
-            toto2 = frame[0:23]
-            toto2 = toto2 >> 1 
+            toto2 = frame[0:23] 
             channel_sum = int.from_bytes(toto2, byteorder="little")
             #channel_sum >> 8
             #print (channel_sum)
