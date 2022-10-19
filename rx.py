@@ -14,6 +14,7 @@ import asyncio
 import serial
 import serial_asyncio
 
+import bitarray as ba
 
 class SBUSReceiver:
     class SBUSFramer(asyncio.Protocol):
@@ -69,7 +70,7 @@ class SBUSReceiver:
             #self.sbusChannels[2] = ((channel_sum[3]>>6 | channel_sum[4]<<2 | channel_sum[5]<<10) & 0x07FF);
             #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
             #print (frame[0:42])
-		
+#		
             channel_bits = ba.bitarray(176) #holds the bits of the 16 11-bit channel values
             channel_bits.setall(0)
             channel_bits_ptr = 0
@@ -83,7 +84,7 @@ class SBUSReceiver:
                 #iterate through 11-bit numbers, converting them to ints. Note little endian.
                 ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],endian='little')))
             return ret_list
-
+#
             toto2 = frame[0:23] 
             channel_sum = int.from_bytes(toto2, byteorder="little")
             #channel_sum >> 8
