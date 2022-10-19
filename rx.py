@@ -20,7 +20,7 @@ class SBUSReceiver:
 
         START_BYTE = 0x00
         END_BYTE = 0xf8
-        SBUS_FRAME_LEN = 25
+        SBUS_FRAME_LEN = 12
 	#\xf8.\x00
 
         def __init__(self):
@@ -63,21 +63,36 @@ class SBUSReceiver:
             self.sbusChannels = [None] * SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS
 
             #print (frame)
-            channel_sum = frame
+            #channel_sum = frame
             #self.sbusChannels[0] = ((channel_sum[1] | channel_sum[2]<<8) & 0x07FF);
             #self.sbusChannels[1] = ((channel_sum[2]>>3 | channel_sum[3]<<5) & 0x07FF);
             #self.sbusChannels[2] = ((channel_sum[3]>>6 | channel_sum[4]<<2 | channel_sum[5]<<10) & 0x07FF);
             #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
-	
             #print (frame[0:42])
+		
+            channel_bits = ba.bitarray(176) #holds the bits of the 16 11-bit channel values
+            channel_bits.setall(0)
+            channel_bits_ptr = 0
+            _UART_FRAME_LENGTH = 12
+            for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
+                #extract from UART frame and invert each byte
+                channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~packet[packet_bits_ptr+1:packet_bits_ptr+9]
+                channel_bits_ptr += 8
+            ret_list = []
+            for channel_ptr in range(0,16*11,11):
+                #iterate through 11-bit numbers, converting them to ints. Note little endian.
+                ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],endian='little')))
+            return ret_list
+
             toto2 = frame[0:23] 
             channel_sum = int.from_bytes(toto2, byteorder="little")
             #channel_sum >> 8
             #print (channel_sum)
             #print (channel_sum >> 11)
-            for ch in range(0, SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS):
-                self.sbusChannels[ch] = channel_sum & 0x7ff
-                channel_sum = channel_sum >> 12
+            
+            #for ch in range(0, SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS):
+                #self.sbusChannels[ch] = channel_sum & 0x7ff
+                #channel_sum = channel_sum >> 12
 
             # Failsafe
             self.failSafeStatus = SBUSReceiver.SBUSFrame.SBUS_SIGNAL_OK
