@@ -52,7 +52,7 @@ class SBUSReceiver:
 
     class SBUSFrame:
         OUT_OF_SYNC_THD = 10
-        SBUS_NUM_CHANNELS = 16
+        SBUS_NUM_CHANNELS = 18
         SBUS_SIGNAL_OK = 0
         SBUS_SIGNAL_LOST = 1
         SBUS_SIGNAL_FAILSAFE = 2
@@ -117,7 +117,7 @@ class SBUSReceiver:
         self._protocol = None
 
     @staticmethod
-    async def create(port='/dev/ttyUSB0'):
+    async def create(port='/dev/ttyS1'):
         receiver = SBUSReceiver()
         receiver._transport, receiver._protocol = await serial_asyncio.create_serial_connection(
             asyncio.get_running_loop(),
