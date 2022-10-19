@@ -64,10 +64,28 @@ class SBUSReceiver:
 
             #print (frame)
             channel_sum = frame
-            self.sbusChannels[0] = ((channel_sum[1] | channel_sum[2]<<8) & 0x07FF);
-            self.sbusChannels[1] = ((channel_sum[2]>>3 | channel_sum[3]<<5) & 0x07FF);
-            self.sbusChannels[2] = ((channel_sum[3]>>6 | channel_sum[4]<<2 | channel_sum[5]<<10) & 0x07FF);
-            self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
+            #self.sbusChannels[0] = ((channel_sum[1] | channel_sum[2]<<8) & 0x07FF);
+            #self.sbusChannels[1] = ((channel_sum[2]>>3 | channel_sum[3]<<5) & 0x07FF);
+            #self.sbusChannels[2] = ((channel_sum[3]>>6 | channel_sum[4]<<2 | channel_sum[5]<<10) & 0x07FF);
+            #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
+	
+            self.sbusChannels[0]  = ((channel_sum[1]    |channel_sum[2]<<8)                 & 0x07FF);
+            self.sbusChannels[1]  = ((channel_sum[2]>>3 |channel_sum[3]<<5)                 & 0x07FF);
+            self.sbusChannels[2]  = ((channel_sum[3]>>6 |channel_sum[4]<<2 |channel_sum[5]<<10)  & 0x07FF);
+            self.sbusChannels[3]  = ((channel_sum[5]>>1 |channel_sum[6]<<7)                 & 0x07FF);
+            self.sbusChannels[4]  = ((channel_sum[6]>>4 |channel_sum[7]<<4)                 & 0x07FF);
+            self.sbusChannels[5]  = ((channel_sum[7]>>7 |channel_sum[8]<<1 |channel_sum[9]<<9)   & 0x07FF);
+            self.sbusChannels[6]  = ((channel_sum[9]>>2 |channel_sum[10]<<6)                & 0x07FF);
+            self.sbusChannels[7]  = ((channel_sum[10]>>5|channel_sum[11]<<3)                & 0x07FF);
+            self.sbusChannels[8]  = ((channel_sum[12]   |channel_sum[13]<<8)                & 0x07FF);
+            self.sbusChannels[9]  = ((channel_sum[13]>>3|channel_sum[14]<<5)                & 0x07FF);
+            self.sbusChannels[10] = ((channel_sum[14]>>6|channel_sum[15]<<2|channel_sum[16]<<10) & 0x07FF);
+            self.sbusChannels[11] = ((channel_sum[16]>>1|channel_sum[17]<<7)                & 0x07FF);
+            self.sbusChannels[12] = ((channel_sum[17]>>4|channel_sum[18]<<4)                & 0x07FF);
+            self.sbusChannels[13] = ((channel_sum[18]>>7|channel_sum[19]<<1|channel_sum[20]<<9)  & 0x07FF);
+            self.sbusChannels[14] = ((channel_sum[20]>>2|channel_sum[21]<<6)                & 0x07FF);
+            self.sbusChannels[15] = ((channel_sum[21]>>5|channel_sum[22]<<3)                & 0x07FF);
+
             #print (frame[0:42])	
             channel_sum = int.from_bytes(frame[0:23], byteorder="little")
             #channel_sum >> 8
