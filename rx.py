@@ -63,7 +63,7 @@ class SBUSReceiver:
             self.sbusChannels = [None] * SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS
 
             #print (frame)
-            #channel_sum = frame
+            channel_sum = frame
             self.sbusChannels[0] = ((channel_sum[1] | channel_sum[2]<<8) & 0x07FF);
             self.sbusChannels[1] = ((channel_sum[2]>>3 | channel_sum[3]<<5) & 0x07FF);
             self.sbusChannels[2] = ((channel_sum[3]>>6 | channel_sum[4]<<2 | channel_sum[5]<<10) & 0x07FF);
