@@ -60,7 +60,8 @@ class SBUSReceiver:
         def __init__(self, frame):
             self.sbusChannels = [None] * SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS
 
-            channel_sum = int.from_bytes(frame[1:23], byteorder="little")
+            #channel_sum = int.from_bytes(frame[1:23], byteorder="little")
+            channel_sum = frame
             self.sbusChannels[0] = ((channel_sum[1] | channel_sum[2]<<8) & 0x07FF);
             self.sbusChannels[1] = ((channel_sum[2]>>3 | channel_sum[3]<<5) & 0x07FF);
             self.sbusChannels[2] = ((channel_sum[3]>>6 | channel_sum[4]<<2 | channel_sum[5]<<10) & 0x07FF);
