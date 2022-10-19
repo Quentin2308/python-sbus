@@ -72,7 +72,7 @@ class SBUSReceiver:
             channel_sum = frame[1:23]		
             for ch in range(0, 16):
                 self.sbusChannels[ch] = channel_sum & 0x7ff
-		self.sbusChannels[ch] = int.from_bytes(self.sbusChannels[ch], byteorder="little")
+                self.sbusChannels[ch] = int.from_bytes(self.sbusChannels[ch], byteorder="little")
                 channel_sum = channel_sum >> 11
 
 
