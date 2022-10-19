@@ -86,7 +86,7 @@ class SBUSReceiver:
             #print(channel_bits)
             channel_bits_ptr = 0
             toto3 = frame[0:42]
-            #print (toto3)
+            print (toto3)
             toto4 = int.from_bytes(toto3, byteorder="big") 
             #print (toto4)
             toto5 = bin(toto4)[2::]
@@ -110,7 +110,7 @@ class SBUSReceiver:
             for channel_ptr in range(0,16*11,11):
                 #iterate through 11-bit numbers, converting them to ints. Note little endian.
                 ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],endian='little')))
-            print (ret_list)
+            #print (ret_list)
 #
             #toto2 = frame[0:23] 
             #channel_sum = int.from_bytes(toto2, byteorder="little")
