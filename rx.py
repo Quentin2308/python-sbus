@@ -54,7 +54,7 @@ class SBUSReceiver:
 
     class SBUSFrame:
         OUT_OF_SYNC_THD = 10
-        SBUS_NUM_CHANNELS = 18
+        SBUS_NUM_CHANNELS = 25
         SBUS_SIGNAL_OK = 0
         SBUS_SIGNAL_LOST = 1
         SBUS_SIGNAL_FAILSAFE = 2
@@ -70,10 +70,10 @@ class SBUSReceiver:
             #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
             #print (frame[0:42])	
             channel_sum = int.from_bytes(frame[0:42], byteorder="little")
-            channel_sum >> 23
+            #channel_sum >> 23
             #print (channel_sum)
             #print (channel_sum >> 11)
-            for ch in range(0, 18):
+            for ch in range(0, 25):
                 self.sbusChannels[ch] = channel_sum & 0x7ff
                 channel_sum = channel_sum >> 11
 
