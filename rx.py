@@ -72,6 +72,7 @@ class SBUSReceiver:
             #print (frame[0:42])
 #		
             channel_bits = ba.bitarray(176) #holds the bits of the 16 11-bit channel values
+            print(channel_bits)
             channel_bits.setall(0)
             channel_bits_ptr = 0
             _UART_FRAME_LENGTH = 12
