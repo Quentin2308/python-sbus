@@ -18,7 +18,7 @@ import serial_asyncio
 class SBUSReceiver:
     class SBUSFramer(asyncio.Protocol):
 
-        START_BYTE = 0x8f
+        START_BYTE = 0xf8
         END_BYTE = 0x00
         SBUS_FRAME_LEN = 22
 	#\xf8.\x00
@@ -34,13 +34,13 @@ class SBUSReceiver:
             self.transport = transport
 
         def data_received(self, data):
-            print(data)
+            #print(data)
             for b in data:
                 if self._in_frame:
                     self._frame.append(b)
                     if len(self._frame) == SBUSReceiver.SBUSFramer.SBUS_FRAME_LEN:
                         decoded_frame = SBUSReceiver.SBUSFrame(self._frame)
-                        #print(decoded_frame)
+                        print(decoded_frame)
                         asyncio.run_coroutine_threadsafe(self.frames.put(decoded_frame), asyncio.get_running_loop())
                         self._in_frame = False
                 else:
@@ -68,8 +68,8 @@ class SBUSReceiver:
             #self.sbusChannels[1] = ((channel_sum[2]>>3 | channel_sum[3]<<5) & 0x07FF);
             #self.sbusChannels[2] = ((channel_sum[3]>>6 | channel_sum[4]<<2 | channel_sum[5]<<10) & 0x07FF);
             #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
-            #print (frame[1:23])	
-            channel_sum = int.from_bytes(frame[1:23], byteorder="big")		
+            print (frame[1:23])	
+            channel_sum = int.from_bytes(frame[1:23], byteorder="little")		
             for ch in range(0, 16):
                 self.sbusChannels[ch] = channel_sum & 0x7ff
                 channel_sum = channel_sum >> 11
