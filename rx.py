@@ -77,7 +77,7 @@ class SBUSReceiver:
             channel_bits.setall(0)
             print(channel_bits)
             channel_bits_ptr = 0
-            _UART_FRAME_LENGTH = 12
+            _UART_FRAME_LENGTH = 15
             toto3 = frame[0:42]
             print (toto3)
             toto4 = int.from_bytes(toto3, byteorder="big") 
