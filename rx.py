@@ -18,9 +18,10 @@ import serial_asyncio
 class SBUSReceiver:
     class SBUSFramer(asyncio.Protocol):
 
-        START_BYTE = 0xF0
+        START_BYTE = 0xf8
         END_BYTE = 0x00
         SBUS_FRAME_LEN = 25
+	#\xf8.\x00
 
         def __init__(self):
             super().__init__()
