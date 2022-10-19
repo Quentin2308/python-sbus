@@ -15,6 +15,7 @@ import serial
 import serial_asyncio
 
 import bitarray as ba
+import bitarray.util as bau
 
 class SBUSReceiver:
     class SBUSFramer(asyncio.Protocol):
