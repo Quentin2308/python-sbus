@@ -33,6 +33,7 @@ class SBUSReceiver:
             self.transport = transport
 
         def data_received(self, data):
+            print(data)
             for b in data:
                 if self._in_frame:
                     self._frame.append(b)
@@ -134,7 +135,6 @@ async def main():
     while True:
         frame = await sbus.get_frame()
         #print(frame)
-        print(sbus)
 
 
 if __name__ == '__main__':
