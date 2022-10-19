@@ -20,7 +20,7 @@ class SBUSReceiver:
 
         START_BYTE = 0x0f
         END_BYTE = 0x00
-        SBUS_FRAME_LEN = 25
+        SBUS_FRAME_LEN = 23
 
         def __init__(self):
             super().__init__()
