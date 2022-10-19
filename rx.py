@@ -124,7 +124,7 @@ class SBUSReceiver:
             stopbits=serial.STOPBITS_TWO,
             bytesize=serial.EIGHTBITS)
         return receiver
-
+	
     async def get_frame(self):
         return await self._protocol.frames.get()
 
@@ -133,7 +133,8 @@ async def main():
     sbus = await SBUSReceiver.create("/dev/ttyS1")
     while True:
         frame = await sbus.get_frame()
-        print(frame)
+        #print(frame)
+	print SBUSReceiver
 
 
 if __name__ == '__main__':
