@@ -11,7 +11,7 @@ class SBUSReceiver:
     
     class SBUSFramer(asyncio.Protocol):
 		
-        START_BYTE = 0xf8
+        START_BYTE = 0x0f
         #END_BYTE = 0x00
         SBUS_FRAME_LEN = 25
 
@@ -31,7 +31,7 @@ class SBUSReceiver:
             #print("data : ",data)
             data_int = int.from_bytes(data, byteorder="big")
             data_bin_b = bin(data_int)[2::]
-            print (data_bin_b)
+            #print (data_bin_b)
             for b in data:
                 if self._in_frame:
                     self._frame.append(b)
