@@ -71,23 +71,6 @@ class SBUSReceiver:
 
         def __init__(self, frame):
             self.sbusChannels = [None] * SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS
-"""
-            #print (frame)
-            #channel_sum = frame
-            #self.sbusChannels[0] = ((channel_sum[1] | channel_sum[2]<<8) & 0x07FF);
-            #self.sbusChannels[1] = ((channel_sum[2]>>3 | channel_sum[3]<<5) & 0x07FF);
-            #self.sbusChannels[2] = ((channel_sum[3]>>6 | channel_sum[4]<<2 | channel_sum[5]<<10) & 0x07FF);
-            #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
-            #print (frame[0:42])
-            toto2 = frame[0:23]  
-            channel_sum = int.from_bytes(toto2, byteorder="little")
-            #channel_sum >> 8
-            #print (toto2)
-
-            for ch in range(0, SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS):
-                self.sbusChannels[ch] = channel_sum & 0x7ff
-                channel_sum = channel_sum >> 12
-"""
             channel_bits = ba.bitarray(176) #holds the bits of the 16 11-bit channel values
             #print(channel_bits)
             channel_bits.setall(0)
