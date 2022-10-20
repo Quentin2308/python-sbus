@@ -25,8 +25,8 @@ class SBUSReceiver:
             self.transport = transport
         def data_received(self, data):
             long = len(data)
-            #print(long)
-            print(data)
+            print("longueur : ",long)
+            print("data : ",data)
     class SBUSFrame:
         OUT_OF_SYNC_THD = 10
         SBUS_NUM_CHANNELS = 16
