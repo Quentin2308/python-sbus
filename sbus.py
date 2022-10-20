@@ -39,7 +39,7 @@ class SBUSReceiver:
                         decoded_frame = SBUSReceiver.SBUSFrame(self._frame)
                         print("longueur :", len(self._frame))
                         print("frame complétée : ", self._frame)
-                        #asyncio.run_coroutine_threadsafe(self.frames.put(decoded_frame), asyncio.get_running_loop())
+                        asyncio.run_coroutine_threadsafe(self.frames.put(decoded_frame), asyncio.get_running_loop())
                         self._in_frame = False
                 else:
                     if b == SBUSReceiver.SBUSFramer.START_BYTE:
