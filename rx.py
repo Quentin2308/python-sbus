@@ -114,9 +114,9 @@ class SBUSReceiver:
             #print (channel_bits)
             #print (len(channel_bits))
 
-            #for channel_ptr in range(0,16*11,11):
+            for channel_ptr in range(0,16*11,11):
                 #iterate through 11-bit numbers, converting them to ints. Note little endian.
-                #ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],endian='little')))
+                ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],endian='little')))
             #print (ret_list[4::])
 
             # Failsafe
