@@ -5,7 +5,7 @@ import bitarray as ba
 import bitarray.util as bau
 
 
-_UART_FRAME_LENGTH = 12
+
 
 class SBUSReceiver:
     
