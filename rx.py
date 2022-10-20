@@ -45,7 +45,8 @@ class SBUSReceiver:
 
         def data_received(self, data):
             print(data)
-            channel_data = ba.bitarray(200)
+            long = len(data)
+            channel_data = ba.bitarray(long)
             channel_data.setall(0)
             channel_data_ptr = 0
 
