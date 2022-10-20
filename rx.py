@@ -112,7 +112,7 @@ class SBUSReceiver:
                 ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],endian='little')))
             #print (ret_list)
 """
-            toto2 = frame[0:23] 
+            toto2 = frame[0:23]  
             channel_sum = int.from_bytes(toto2, byteorder="little")
             #channel_sum >> 8
             print (toto2)
