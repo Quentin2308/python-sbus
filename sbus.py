@@ -13,8 +13,7 @@ class SBUSReceiver:
         START_BYTE = 0x00
         END_BYTE = 0xf8
         SBUS_FRAME_LEN = 22
-        print (self._transport)
-        print (self._protocol)
+
         def __init__(self):
             super().__init__()
             self._in_frame = False
@@ -31,7 +30,8 @@ class SBUSReceiver:
         SBUS_SIGNAL_OK = 0
         SBUS_SIGNAL_LOST = 1
         SBUS_SIGNAL_FAILSAFE = 2
-
+        print (self._transport)
+        print (self._protocol)
         def get_rx_channels(self):
             return self.sbusChannels
 
