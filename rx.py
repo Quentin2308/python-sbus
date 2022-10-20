@@ -79,40 +79,6 @@ class SBUSReceiver:
             #self.sbusChannels[2] = ((channel_sum[3]>>6 | channel_sum[4]<<2 | channel_sum[5]<<10) & 0x07FF);
             #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
             #print (frame[0:42])
-"""	
-            channel_bits = ba.bitarray(176) #holds the bits of the 16 11-bit channel values
-            #print(channel_bits)
-            channel_bits.setall(0)
-            #print(channel_bits)
-            channel_bits_ptr = 0
-            toto3 = frame[0:42]
-            print (toto3)
-            toto4 = int.from_bytes(toto3, byteorder="big") 
-            #print (toto4)
-            toto5 = bin(toto4)[2::]
-            #print (toto5)
-            #print (len(toto5))
-            toto6 = ba.bitarray(toto5)
-            #print (toto6)
-            #print (len(toto6))
-		
-            for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
-                #extract from UART frame and invert each byte
-                #print (toto6[packet_bits_ptr+1:packet_bits_ptr+9])
-                channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~toto6[packet_bits_ptr+1:packet_bits_ptr+9]
-                #print (channel_bits[channel_bits_ptr:channel_bits_ptr+8])
-                #print (channel_bits)
-                channel_bits_ptr += 8
-            ret_list = []
-            #print (channel_bits)
-            #print (len(channel_bits))
-
-            for channel_ptr in range(0,16*11,11):
-                #iterate through 11-bit numbers, converting them to ints. Note little endian.
-                ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],endian='little')))
-            #print (ret_list)
-"""
-
             toto2 = frame[0:23]  
             channel_sum = int.from_bytes(toto2, byteorder="little")
             #channel_sum >> 8
