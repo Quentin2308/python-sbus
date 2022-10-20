@@ -50,7 +50,7 @@ class SBUSReceiver:
                     self._frame.append(b)
                     if len(self._frame) == SBUSReceiver.SBUSFramer.SBUS_FRAME_LEN:
                         decoded_frame = SBUSReceiver.SBUSFrame(self._frame)
-                        print(decoded_frame)
+                        #print(decoded_frame)
                         asyncio.run_coroutine_threadsafe(self.frames.put(decoded_frame), asyncio.get_running_loop())
                         self._in_frame = False
                 else:
@@ -71,7 +71,7 @@ class SBUSReceiver:
 
         def __init__(self, frame):
             self.sbusChannels = [None] * SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS
-
+"""
             #print (frame)
             #channel_sum = frame
             #self.sbusChannels[0] = ((channel_sum[1] | channel_sum[2]<<8) & 0x07FF);
@@ -87,6 +87,38 @@ class SBUSReceiver:
             for ch in range(0, SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS):
                 self.sbusChannels[ch] = channel_sum & 0x7ff
                 channel_sum = channel_sum >> 12
+"""
+            channel_bits = ba.bitarray(176) #holds the bits of the 16 11-bit channel values
+            #print(channel_bits)
+            channel_bits.setall(0)
+            #print(channel_bits)
+            channel_bits_ptr = 0
+            toto3 = frame[0:42]
+            print (toto3)
+            toto4 = int.from_bytes(toto3, byteorder="big") 
+            #print (toto4)
+            toto5 = bin(toto4)[2::]
+            #print (toto5)
+            #print (len(toto5))
+            toto6 = ba.bitarray(toto5)
+            #print (toto6)
+            #print (len(toto6))
+		
+            for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
+                #extract from UART frame and invert each byte
+                #print (toto6[packet_bits_ptr+1:packet_bits_ptr+9])
+                channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~toto6[packet_bits_ptr+1:packet_bits_ptr+9]
+                #print (channel_bits[channel_bits_ptr:channel_bits_ptr+8])
+                #print (channel_bits)
+                channel_bits_ptr += 8
+            ret_list = []
+            #print (channel_bits)
+            #print (len(channel_bits))
+
+            for channel_ptr in range(0,16*11,11):
+                #iterate through 11-bit numbers, converting them to ints. Note little endian.
+                ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],endian='little')))
+            print (ret_list)
 
             # Failsafe
             self.failSafeStatus = SBUSReceiver.SBUSFrame.SBUS_SIGNAL_OK
