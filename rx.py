@@ -44,9 +44,9 @@ class SBUSReceiver:
             self.transport = transport
 
         def data_received(self, data):
-            print(data)
             long = len(data)
-            #print(long)
+            print(long)
+            print(data)
             channel_data = ba.bitarray(long*12)
             channel_data.setall(0)
             channel_data_ptr = 0
@@ -59,9 +59,8 @@ class SBUSReceiver:
             for packet_data in range (0,12+25*12,12):
                 channel_data[channel_data_ptr:channel_data_ptr+8]=data_bin_12[packet_data+1:packet_data+9]
                 channel_data_ptr += 8
-            channel_data_int = int(channel_data)
-            print (channel_data)
-            print (channel_data_int)
+            #channel_data_int = int(channel_data)
+            #print (channel_data)
             for b in channel_data:
                 if self._in_frame:
                     self._frame.append(b)
@@ -176,6 +175,7 @@ class SBUSReceiver:
             #parity=serial.PARITY_EVEN,
             #stopbits=serial.STOPBITS_TWO,
             #bytesize=serial.EIGHTBITS)
+        print (receiver)
         return receiver
 	
     async def get_frame(self):
