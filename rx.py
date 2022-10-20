@@ -102,7 +102,7 @@ class SBUSReceiver:
             #print (len(toto5))
             toto6 = ba.bitarray(toto5)
             #print (toto6)
-            #print (len(toto6))
+            print (len(toto6))
 		
             for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
                 #extract from UART frame and invert each byte
