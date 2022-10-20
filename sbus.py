@@ -92,7 +92,7 @@ class SBUSReceiver:
             SBUSReceiver.SBUSFramer,
             port,
             baudrate=100000,
-            parity=serial.PARITY_ODD,
+            parity=serial.PARITY_EVEN,
             stopbits=serial.STOPBITS_ONE,
             bytesize=serial.EIGHTBITS)
         
