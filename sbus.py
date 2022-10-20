@@ -23,7 +23,10 @@ class SBUSReceiver:
 
         def connection_made(self, transport):
             self.transport = transport
-
+        def data_received(self, data):
+            long = len(data)
+            #print(long)
+            print(data)
     class SBUSFrame:
         OUT_OF_SYNC_THD = 10
         SBUS_NUM_CHANNELS = 16
@@ -70,7 +73,8 @@ class SBUSReceiver:
             #parity=serial.PARITY_EVEN,
             #stopbits=serial.STOPBITS_TWO,
             #bytesize=serial.EIGHTBITS)
-        print (receiver)
+        print (receiver._protocol)
+	
         return receiver
 	
     async def get_frame(self):
