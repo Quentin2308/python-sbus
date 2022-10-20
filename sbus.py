@@ -69,10 +69,10 @@ class SBUSReceiver:
             asyncio.get_running_loop(),
             SBUSReceiver.SBUSFramer,
             port,
-            baudrate=100000)#,
-            #parity=serial.PARITY_EVEN,
-            #stopbits=serial.STOPBITS_TWO,
-            #bytesize=serial.EIGHTBITS)
+            baudrate=100000,
+            parity=serial.PARITY_EVEN,
+            stopbits=serial.STOPBITS_TWO,
+            bytesize=serial.EIGHTBITS)
         print (receiver._protocol)
 	
         return receiver
