@@ -11,8 +11,8 @@ class SBUSReceiver:
     
     class SBUSFramer(asyncio.Protocol):
 		
-        START_BYTE = 0xf8 
-        END_BYTE = 0x00
+        START_BYTE = 0xfe 
+        #END_BYTE = 0x00
         SBUS_FRAME_LEN = 25
 
         def __init__(self):
