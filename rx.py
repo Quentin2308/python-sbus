@@ -59,7 +59,8 @@ class SBUSReceiver:
             for packet_data in range (0,12+25*12,12):
                 channel_data[channel_data_ptr:channel_data_ptr+8]=data_bin_12[packet_data+1:packet_data+9]
                 channel_data_ptr += 8
-            print ("Channel data : ", channel_data)    
+            print ("Channel data : ", channel_data) 
+            channel_data_hex = []
             for i,ch in enumerate(channel_data) :
                 channel_data_hex[i] = hex(ch)
             print ("Channel data hex : ", channel_data_hex)
