@@ -14,7 +14,7 @@ class SBUSReceiver:
         END_BYTE = 0xf8
         SBUS_FRAME_LEN = 22
         print (self._transport)
-	print (self._protocol)
+        print (self._protocol)
         def __init__(self):
             super().__init__()
             self._in_frame = False
