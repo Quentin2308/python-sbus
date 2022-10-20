@@ -77,7 +77,7 @@ class SBUSReceiver:
             #print(channel_bits)
             channel_bits_ptr = 0
             toto3 = frame[0:42]
-            #print (toto3)
+            print (toto3)
             toto4 = int.from_bytes(toto3, byteorder="big") 
             #print (toto4)
             toto5 = bin(toto4)[2::]
@@ -89,14 +89,14 @@ class SBUSReceiver:
 		
             for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
                 #extract from UART frame and invert each byte
-                print (toto6[packet_bits_ptr+1:packet_bits_ptr+9])
+                #print (toto6[packet_bits_ptr+1:packet_bits_ptr+9])
                 channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~toto6[packet_bits_ptr+1:packet_bits_ptr+9]
-                print (channel_bits[channel_bits_ptr:channel_bits_ptr+8])
-                print (channel_bits)
+                #print (channel_bits[channel_bits_ptr:channel_bits_ptr+8])
+                #print (channel_bits)
                 channel_bits_ptr += 8
             ret_list = []
-            #print (channel_bits)
-            #print (len(channel_bits))
+            print (channel_bits)
+            print (len(channel_bits))
 
             for channel_ptr in range(0,16*11,11):
                 #iterate through 11-bit numbers, converting them to ints. Note little endian.
