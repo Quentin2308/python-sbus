@@ -10,9 +10,6 @@ _UART_FRAME_LENGTH = 12
 class SBUSReceiver:
     
     class SBUSFramer(asyncio.Protocol):
-        #START_BYTE = 0x00
-        #END_BYTE = 0xf8
-        #SBUS_FRAME_LEN = 22
 
         def __init__(self):
             super().__init__()
@@ -27,6 +24,11 @@ class SBUSReceiver:
             long = len(data)
             print("longueur : ",long)
             print("data : ",data)
+            data_int = int.from_bytes(data, byteorder="big")
+            data_bin_b = bin(data_int)[2::]
+            print (data_bin_b)
+
+
     class SBUSFrame:
         OUT_OF_SYNC_THD = 10
         SBUS_NUM_CHANNELS = 16
