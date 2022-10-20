@@ -29,7 +29,7 @@ class SBUSReceiver:
 
         START_BYTE = 0x00
         END_BYTE = 0xf8
-        SBUS_FRAME_LEN = 35
+        SBUS_FRAME_LEN = 22
         #SBUS_FRAME_LEN = 22
 	#\xf8.\x00
 
@@ -76,8 +76,8 @@ class SBUSReceiver:
             channel_bits.setall(0)
             #print(channel_bits)
             channel_bits_ptr = 0
-            toto3 = frame[0:42]
-            #print (toto3)
+            toto3 = frame[0:SBUS_FRAME_LEN]
+            print (toto3)
             toto4 = int.from_bytes(toto3, byteorder="big") 
             #print (toto4)
             toto5 = bin(toto4)[2::]
