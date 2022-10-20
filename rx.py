@@ -64,7 +64,7 @@ class SBUSReceiver:
 
     class SBUSFrame:
         OUT_OF_SYNC_THD = 10
-        SBUS_NUM_CHANNELS = 17
+        SBUS_NUM_CHANNELS = 16
         SBUS_SIGNAL_OK = 0
         SBUS_SIGNAL_LOST = 1
         SBUS_SIGNAL_FAILSAFE = 2
