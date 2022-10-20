@@ -13,6 +13,7 @@ class SBUSReceiver:
 		
 	START_BYTE = 0xf8
         END_BYTE = 0x00
+	SBUS_FRAME_LEN = 25
 
         def __init__(self):
             super().__init__()
@@ -26,8 +27,8 @@ class SBUSReceiver:
 	
         def data_received(self, data):
             long = len(data)
-            print("longueur : ",long)
-            print("data : ",data)
+            #print("longueur : ",long)
+            "print("data : ",data)
             data_int = int.from_bytes(data, byteorder="big")
             data_bin_b = bin(data_int)[2::]
             #print (data_bin_b)
@@ -36,7 +37,8 @@ class SBUSReceiver:
                     self._frame.append(b)
                     if len(self._frame) == SBUSReceiver.SBUSFramer.SBUS_FRAME_LEN:
                         #decoded_frame = SBUSReceiver.SBUSFrame(self._frame)
-                        print(self._frame)
+			print("longueur :", len(self._frame))
+                        print("frame complétée : ", self._frame)
                         #asyncio.run_coroutine_threadsafe(self.frames.put(decoded_frame), asyncio.get_running_loop())
                         self._in_frame = False
                 else:
