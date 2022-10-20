@@ -62,8 +62,13 @@ class SBUSReceiver:
             print ("Channel data : ", channel_data) 
             channel_data_hex = []
             for i,ch in enumerate(channel_data) :
-                channel_data_hex.append(ch[0:7])
+                channel_data_hex.append(ch)
             print ("Channel data hex : ", channel_data_hex)
+            channel_data_hex_2 = []
+            i=0
+            for ch in channel_data_hex :
+                channel_data_hex_2 = ch[i:i+8]
+		i+=8
             for b in channel_data:
                 if self._in_frame:
                     self._frame.append(b)
