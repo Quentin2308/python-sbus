@@ -30,8 +30,6 @@ class SBUSReceiver:
         SBUS_SIGNAL_OK = 0
         SBUS_SIGNAL_LOST = 1
         SBUS_SIGNAL_FAILSAFE = 2
-        print (self._transport)
-        print (self._protocol)
         def get_rx_channels(self):
             return self.sbusChannels
 
@@ -43,7 +41,7 @@ class SBUSReceiver:
         
         def __init__(self, frame):
             self.sbusChannels = [None] * SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS
-            #print (frame)
+            print (frame)
             channel_sum = int.from_bytes(frame[0:23], byteorder="little")
             #print (channel_sum)
 
