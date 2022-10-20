@@ -59,8 +59,9 @@ class SBUSReceiver:
             for packet_data in range (0,12+25*12,12):
                 channel_data[channel_data_ptr:channel_data_ptr+8]=data_bin_12[packet_data+1:packet_data+9]
                 channel_data_ptr += 8
-            #channel_data_int = int(channel_data)
-            #print ("Channel data : ", channel_data)
+            print ("Channel data : ", channel_data)    
+            channel_data_hex = hex(channel_data)
+            print ("Channel data hex : ", channel_data_hex)
             for b in channel_data:
                 if self._in_frame:
                     self._frame.append(b)
