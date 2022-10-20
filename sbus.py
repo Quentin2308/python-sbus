@@ -8,13 +8,13 @@ import bitarray.util as bau
 _UART_FRAME_LENGTH = 12
 
 class SBUSReceiver:
-    print (_transport)
-    print(_protocol)
+    
     class SBUSFramer(asyncio.Protocol):
         START_BYTE = 0x00
         END_BYTE = 0xf8
         SBUS_FRAME_LEN = 22
-        
+        print (self._transport)
+	print (self._protocol)
         def __init__(self):
             super().__init__()
             self._in_frame = False
