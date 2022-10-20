@@ -94,7 +94,7 @@ class SBUSReceiver:
             baudrate=100000,
             parity=serial.PARITY_ODD,
             stopbits=serial.STOPBITS_ONE,
-            bytesize=serial.EIGHTBITS)
+            bytesize=serial.FIVEBITS)
         
         return receiver
 	
