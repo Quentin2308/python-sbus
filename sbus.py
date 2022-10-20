@@ -20,9 +20,10 @@ class SBUSReceiver:
 
         def connection_made(self, transport):
             self.transport = transport
+	
         def data_received(self, data):
             long = len(data)
-            #print("longueur : ",long)
+            print("longueur : ",long)
             print("data : ",data)
             data_int = int.from_bytes(data, byteorder="little")
             data_bin_b = bin(data_int)[2::]
