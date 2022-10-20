@@ -21,8 +21,8 @@ import bitarray.util as bau
 _UART_FRAME_CONFORMANCE_BITMASK = ba.bitarray('100000000011')
 #used to check failsafe status
 _FAILSAFE_STATUS_BITMASK = ba.bitarray('000000001100')
-_PACKET_LENGTH = 298
-_UART_FRAME_LENGTH = 12 
+#_PACKET_LENGTH = 298
+_UART_FRAME_LENGTH = 8 
 
 class SBUSReceiver:
     class SBUSFramer(asyncio.Protocol):
@@ -77,7 +77,7 @@ class SBUSReceiver:
             #print(channel_bits)
             channel_bits_ptr = 0
             toto3 = frame[0:42]
-            print (toto3)
+            #print (toto3)
             toto4 = int.from_bytes(toto3, byteorder="big") 
             #print (toto4)
             toto5 = bin(toto4)[2::]
@@ -90,7 +90,7 @@ class SBUSReceiver:
             for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
                 #extract from UART frame and invert each byte
                 #print (toto6[packet_bits_ptr+1:packet_bits_ptr+9])
-                channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~toto6[packet_bits_ptr+1:packet_bits_ptr+9]
+                channel_bits[channel_bits_ptr:channel_bits_ptr+8]=~toto6[packet_bits_ptr:packet_bits_ptr+8]
                 #print (channel_bits[channel_bits_ptr:channel_bits_ptr+8])
                 #print (channel_bits)
                 channel_bits_ptr += 8
