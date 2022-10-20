@@ -50,7 +50,7 @@ class SBUSReceiver:
                     self._frame.append(b)
                     if len(self._frame) == SBUSReceiver.SBUSFramer.SBUS_FRAME_LEN:
                         decoded_frame = SBUSReceiver.SBUSFrame(self._frame)
-                        #print(decoded_frame)
+                        print(decoded_frame)
                         asyncio.run_coroutine_threadsafe(self.frames.put(decoded_frame), asyncio.get_running_loop())
                         self._in_frame = False
                 else:
@@ -79,7 +79,7 @@ class SBUSReceiver:
             #self.sbusChannels[2] = ((channel_sum[3]>>6 | channel_sum[4]<<2 | channel_sum[5]<<10) & 0x07FF);
             #self.sbusChannels[3] = ((channel_sum[5]>>1 | channel_sum[6]<<7) & 0x07FF);
             #print (frame[0:42])
-#		
+"""	
             channel_bits = ba.bitarray(176) #holds the bits of the 16 11-bit channel values
             #print(channel_bits)
             channel_bits.setall(0)
@@ -111,16 +111,15 @@ class SBUSReceiver:
                 #iterate through 11-bit numbers, converting them to ints. Note little endian.
                 ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],endian='little')))
             #print (ret_list)
-#
-            #toto2 = frame[0:23] 
-            #channel_sum = int.from_bytes(toto2, byteorder="little")
+"""
+            toto2 = frame[0:23] 
+            channel_sum = int.from_bytes(toto2, byteorder="little")
             #channel_sum >> 8
-            #print (channel_sum)
-            #print (channel_sum >> 11)
+            print (toto2)
             
-            #for ch in range(0, SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS):
-                #self.sbusChannels[ch] = channel_sum & 0x7ff
-                #channel_sum = channel_sum >> 12
+            for ch in range(0, SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS):
+                self.sbusChannels[ch] = channel_sum & 0x7ff
+                channel_sum = channel_sum >> 12
 
             # Failsafe
             self.failSafeStatus = SBUSReceiver.SBUSFrame.SBUS_SIGNAL_OK
