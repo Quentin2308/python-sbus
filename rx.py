@@ -29,7 +29,7 @@ class SBUSReceiver:
 
         START_BYTE = 0x00
         END_BYTE = 0xf8
-        SBUS_FRAME_LEN = 22
+        SBUS_FRAME_LEN = 23
         #SBUS_FRAME_LEN = 22
 	#\xf8.\x00
 
