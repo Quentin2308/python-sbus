@@ -74,17 +74,17 @@ class SBUSReceiver:
             channel_bits = ba.bitarray(176) #holds the bits of the 16 11-bit channel values
             #print(channel_bits)
             channel_bits.setall(0)
-            #print(channel_bits)
+            print(channel_bits)
             channel_bits_ptr = 0
             toto3 = frame[0:42]
             print (toto3)
             toto4 = int.from_bytes(toto3, byteorder="big") 
-            #print (toto4)
+            print (toto4)
             toto5 = bin(toto4)[2::]
-            #print (toto5)
-            #print (len(toto5))
+            print (toto5)
+            print (len(toto5))
             toto6 = ba.bitarray(toto5)
-            #print (toto6)
+            print (toto6)
             print (len(toto6))
 		
             for packet_bits_ptr in range (_UART_FRAME_LENGTH,_UART_FRAME_LENGTH+22*_UART_FRAME_LENGTH,_UART_FRAME_LENGTH):
@@ -101,7 +101,7 @@ class SBUSReceiver:
             for channel_ptr in range(0,16*11,11):
                 #iterate through 11-bit numbers, converting them to ints. Note little endian.
                 ret_list.append(bau.ba2int(ba.bitarray(channel_bits[channel_ptr:channel_ptr+11],endian='little')))
-            print (ret_list)
+            #print (ret_list)
 
             # Failsafe
             self.failSafeStatus = SBUSReceiver.SBUSFrame.SBUS_SIGNAL_OK
