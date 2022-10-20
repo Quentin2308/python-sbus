@@ -28,7 +28,7 @@ class SBUSReceiver:
             data_bin_b = bin(data_int)[2::]
             #print (data_bin_b)
             for b in data :
-		print(b)
+                print(b)
 
 
 
