@@ -27,15 +27,13 @@ class SBUSReceiver:
 	
         def data_received(self, data):
             long = len(data)
-            #print("longueur : ",long)
-            #print("data : ",data)
+            print("longueur : ",long)
+            print("data : ",data)
             data_int = int.from_bytes(data, byteorder="big")
             data_bin_b = bin(data_int)[2::]
             #print (data_bin_b)
             for b in data:
                 if self._in_frame:
-                    if len(b) == 2 :
-                        print (b)
                     self._frame.append(b)
                     if len(self._frame) == SBUSReceiver.SBUSFramer.SBUS_FRAME_LEN:
                         #decoded_frame = SBUSReceiver.SBUSFrame(self._frame)
