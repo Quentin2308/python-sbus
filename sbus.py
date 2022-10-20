@@ -36,7 +36,7 @@ class SBUSReceiver:
                 if self._in_frame:
                     self._frame.append(b)
                     if len(self._frame) == SBUSReceiver.SBUSFramer.SBUS_FRAME_LEN:
-                        #decoded_frame = SBUSReceiver.SBUSFrame(self._frame)
+                        decoded_frame = SBUSReceiver.SBUSFrame(self._frame)
                         print("longueur :", len(self._frame))
                         print("frame complétée : ", self._frame)
                         #asyncio.run_coroutine_threadsafe(self.frames.put(decoded_frame), asyncio.get_running_loop())
@@ -54,6 +54,7 @@ class SBUSReceiver:
         SBUS_SIGNAL_OK = 0
         SBUS_SIGNAL_LOST = 1
         SBUS_SIGNAL_FAILSAFE = 2
+	
         def get_rx_channels(self):
             return self.sbusChannels
 
@@ -69,9 +70,9 @@ class SBUSReceiver:
             channel_sum = int.from_bytes(frame[0:23], byteorder="little")
             #print (channel_sum)
 
-            for ch in range(0, SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS):
-                self.sbusChannels[ch] = channel_sum & 0x7ff
-                channel_sum = channel_sum >> 12
+            #for ch in range(0, SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS):
+                #self.sbusChannels[ch] = channel_sum & 0x7ff
+                #channel_sum = channel_sum >> 12
             # Failsafe
             self.failSafeStatus = SBUSReceiver.SBUSFrame.SBUS_SIGNAL_OK
             if (frame[SBUSReceiver.SBUSFramer.SBUS_FRAME_LEN - 2]) & (1 << 2):
