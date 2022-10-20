@@ -66,7 +66,7 @@ class SBUSReceiver:
         
         def __init__(self, frame):
             self.sbusChannels = [None] * SBUSReceiver.SBUSFrame.SBUS_NUM_CHANNELS
-            print ("frame transférée:", frame)
+            print ("frame transférée: ", frame)
             channel_sum = int.from_bytes(frame[0:23], byteorder="little")
             print (channel_sum)
 
