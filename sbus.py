@@ -25,7 +25,7 @@ class SBUSReceiver:
             long = len(data)
             print("longueur : ",long)
             print("data : ",data)
-            data_int = int.from_bytes(data, byteorder="little")
+            data_int = int.from_bytes(data, byteorder="big")
             data_bin_b = bin(data_int)[2::]
             #print (data_bin_b)
             #for b in data :
