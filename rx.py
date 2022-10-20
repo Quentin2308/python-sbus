@@ -175,7 +175,6 @@ class SBUSReceiver:
             #parity=serial.PARITY_EVEN,
             #stopbits=serial.STOPBITS_TWO,
             #bytesize=serial.EIGHTBITS)
-        print (receiver)
         return receiver
 	
     async def get_frame(self):
