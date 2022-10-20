@@ -59,15 +59,15 @@ class SBUSReceiver:
             for packet_data in range (0,12+25*12,12):
                 channel_data[channel_data_ptr:channel_data_ptr+8]=data_bin_12[packet_data+1:packet_data+9]
                 channel_data_ptr += 8
-            channel_data_hexa = channel_data & 0xff
+            #channel_data_hexa = channel_data & 0xff
             print (channel_data)
-            print (channel_data_hexa)
+            #print (channel_data_hexa)
             for b in channel_data:
                 if self._in_frame:
                     self._frame.append(b)
                     if len(self._frame) == SBUSReceiver.SBUSFramer.SBUS_FRAME_LEN:
                         decoded_frame = SBUSReceiver.SBUSFrame(self._frame)
-                        #print(decoded_frame)
+                        print(decoded_frame)
                         asyncio.run_coroutine_threadsafe(self.frames.put(decoded_frame), asyncio.get_running_loop())
                         self._in_frame = False
                 else:
