@@ -53,14 +53,14 @@ class SBUSReceiver:
 
             data_int = int.from_bytes(data, byteorder="big")
             data_bin_b = bin(data_int)[2::]
-            print (data_bin_b)
+            #print (data_bin_b)
             data_bin_12 = ba.bitarray(data_bin_b)
-            print (data_bin_12)
+            #print (data_bin_12)
             for packet_data in range (0,12+25*12,12):
                 channel_data[channel_data_ptr:channel_data_ptr+8]=data_bin_12[packet_data+1:packet_data+9]
                 channel_data_ptr += 8
             #channel_data_hexa = channel_data & 0xff
-            #print (channel_data)
+            print (channel_data)
             #print (channel_data_hexa)
             for b in channel_data:
                 if self._in_frame:
