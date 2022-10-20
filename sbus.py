@@ -35,7 +35,7 @@ class SBUSReceiver:
             for b in data:
                 if self._in_frame:
                     if len(b) == 2 :
-			print (b)
+                        print (b)
                     self._frame.append(b)
                     if len(self._frame) == SBUSReceiver.SBUSFramer.SBUS_FRAME_LEN:
                         #decoded_frame = SBUSReceiver.SBUSFrame(self._frame)
