@@ -11,7 +11,7 @@ class SBUSReceiver:
     
     class SBUSFramer(asyncio.Protocol):
 		
-        START_BYTE = 0xfC
+        START_BYTE = 0xf8
         #END_BYTE = 0x00
         SBUS_FRAME_LEN = 25
 
@@ -91,12 +91,11 @@ class SBUSReceiver:
             asyncio.get_running_loop(),
             SBUSReceiver.SBUSFramer,
             port,
-            baudrate=100000)#,
-            #parity=serial.PARITY_EVEN,
-            #stopbits=serial.STOPBITS_TWO,
-            #bytesize=serial.EIGHTBITS)
+            baudrate=100000,
+            parity=serial.PARITY_EVEN,
+            stopbits=serial.STOPBITS_TWO,
+            bytesize=serial.EIGHTBITS)
         
-	
         return receiver
 	
     async def get_frame(self):
