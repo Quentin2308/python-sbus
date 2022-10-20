@@ -46,13 +46,14 @@ class SBUSReceiver:
         def data_received(self, data):
             print(data)
             long = len(data)
+            print(long)
             channel_data = ba.bitarray(long)
             channel_data.setall(0)
             channel_data_ptr = 0
 
             data_int = int.from_bytes(data, byteorder="big")
             data_bin_b = bin(data_int)[2::]
-            print (data_bin_b)
+            #print (data_bin_b)
             data_bin_12 = ba.bitarray(data_bin_b)
             #print (data_bin_12)
             for packet_data in range (0,12+25*12,12):
@@ -111,8 +112,8 @@ class SBUSReceiver:
                 #print (channel_bits)
                 channel_bits_ptr += 8
             ret_list = []
-            print (channel_bits)
-            print (len(channel_bits))
+            #print (channel_bits)
+            #print (len(channel_bits))
 
             for channel_ptr in range(0,16*11,11):
                 #iterate through 11-bit numbers, converting them to ints. Note little endian.
