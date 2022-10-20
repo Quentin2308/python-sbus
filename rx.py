@@ -27,7 +27,7 @@ _UART_FRAME_LENGTH = 8
 class SBUSReceiver:
     class SBUSFramer(asyncio.Protocol):
 
-        START_BYTE = 0xf8
+        START_BYTE = 0x00
         END_BYTE = 0xf8
         SBUS_FRAME_LEN = 23
         #SBUS_FRAME_LEN = 22
