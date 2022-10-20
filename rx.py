@@ -59,7 +59,7 @@ class SBUSReceiver:
             for packet_data in range (0,12+25*12,12):
                 channel_data[channel_data_ptr:channel_data_ptr+8]=data_bin_12[packet_data+1:packet_data+9]
                 channel_data_ptr += 8
-            channel_data_hexa = channel_data.encode(encoding='UTF-8',errors='strict')
+            channel_data_hexa = hex(channel_data)
             print (channel_data)
             print (channel_data_hexa)
             for b in channel_data:
